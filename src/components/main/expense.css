@@ -1,0 +1,29 @@
+/* CustomScrollbar.css */
+/* Style the scrollbar - this is a general example */
+.scrollbar-container::-webkit-scrollbar {
+    width: 8px; /* Adjust the width of the scrollbar */
+  }
+  
+  .scrollbar-container::-webkit-scrollbar-track {
+    background: transparent; /* Track background */
+  }
+  
+  .scrollbar-container::-webkit-scrollbar-thumb {
+    background: #888; /* Scroll handle color */
+    border-radius: 4px; /* Optional: Rounds the corners of the scroll handle */
+  }
+  
+  .scrollbar-container:hover::-webkit-scrollbar-thumb {
+    background: #555; /* Scroll handle color on hover */
+  }
+  
+  /* Make scrollbar transparent by default and only show on hover */
+  .scrollbar-container {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent; /* Foreground and background colors */
+  }
+  
+  .scrollbar-container:hover {
+    scrollbar-color: #888 transparent; /* Adjust thumb color on hover */
+  }
+  

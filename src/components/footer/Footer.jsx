@@ -1,14 +1,5 @@
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Box,
-  Container,
-  CssBaseline,
-  Typography,
-} from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 
-import AnalyticIcon from '@mui/icons-material/Assessment'; // Choose appropriate icons
-import ChangeLogIcon from '@mui/icons-material/Update'; // Choose appropriate icons
 import { useState } from 'react';
 import { Copyright } from '@mui/icons-material';
 
@@ -20,11 +11,14 @@ function Footer() {
       sx={{
         py: 3,
         px: 2,
-        mt: 'auto',
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'light'
-            ? theme.palette.grey[200]
-            : theme.palette.grey[800],
+        position: 'fixed',
+        bottom: 0,
+        width: '100%',
+        maxWidth: 'sm',
+        mx: 'auto',
+        left: 0,
+        right: 0,
+        backgroundColor: (theme) => theme.palette.background.paper,
       }}
     >
       <Container maxWidth="sm">
