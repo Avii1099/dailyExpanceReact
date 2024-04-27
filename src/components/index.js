@@ -1,5 +1,5 @@
 import Footer from './footer/Footer';
-import NavBar from './header/NavBar';
-import ExpenseSummary from './main/ExpenseSummary';
+import Header from './header/Header.jsx';
+import ExpenseSummary from './expenseSummary/ExpenseSummary.jsx';
 
-export { NavBar, Footer, ExpenseSummary };
+export { Header, Footer, ExpenseSummary };

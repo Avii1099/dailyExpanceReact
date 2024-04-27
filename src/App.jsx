@@ -1,7 +1,6 @@
-import React from 'react';
-import { ExpenseSummary, NavBar, Footer } from './components';
+import { ExpenseSummary, Header, Footer } from './components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Box, Container, CssBaseline } from '@mui/material';
+import { Container, CssBaseline } from '@mui/material';
 
 function App() {
   const darkTheme = createTheme({
@@ -20,7 +19,7 @@ function App() {
     <Container maxWidth="sm" component="main">
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <NavBar />
+        <Header />
 
         <ExpenseSummary />
 

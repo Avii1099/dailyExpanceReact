@@ -2,7 +2,7 @@ import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContrastIcon from '@mui/icons-material/Contrast';
 
-function NavBar() {
+function Header() {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -10,7 +10,11 @@ function NavBar() {
           <ContrastIcon />
         </IconButton>
 
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1, textAlign: 'center' }}
+        >
           EXPENSES
         </Typography>
 
@@ -22,4 +26,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default Header;
