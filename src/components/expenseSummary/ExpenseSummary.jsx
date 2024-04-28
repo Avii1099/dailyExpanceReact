@@ -15,7 +15,6 @@ import {
 
 import './expense.css';
 
-// This is a functional component for the Expense Summary
 function ExpenseSummary({ totalSpent = 110 }) {
   const expenses = [
     // Add your expenses data here
@@ -37,7 +36,6 @@ function ExpenseSummary({ totalSpent = 110 }) {
         { emoji: '🏠', title: 'Rent', time: '05:58 AM', amount: -10 },
       ],
     },
-    // ... more expenses
   ];
 
   return (

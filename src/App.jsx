@@ -1,5 +1,5 @@
+import './index.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Header, Footer, Analytic, ExpenseSummary } from './components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Container, CssBaseline } from '@mui/material';
 import { Layout, appRoutes } from './Routes';
@@ -14,6 +14,9 @@ function App() {
       secondary: {
         main: '#f48fb1',
       },
+    },
+    typography: {
+      fontFamily: ['Nunito', 'sans-serif'].join(','),
     },
   });
 
