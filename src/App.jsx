@@ -1,7 +1,6 @@
-import { ExpenseSummary, Header, Footer } from './components';
+import { Header, Footer, Analytic, ExpenseSummary } from './components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Container, CssBaseline } from '@mui/material';
-
 function App() {
   const darkTheme = createTheme({
     palette: {
@@ -22,6 +21,7 @@ function App() {
         <Header />
 
         <ExpenseSummary />
+        {/* <Analytic /> */}
 
         <Footer />
       </ThemeProvider>
