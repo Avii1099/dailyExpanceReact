@@ -2,9 +2,11 @@ import { Box, IconButton, Typography } from '@mui/material';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Footer() {
+  const location = useLocation();
+
   return (
     <Box
       component="footer"
@@ -17,7 +19,7 @@ function Footer() {
         position: 'fixed',
         bottom: 0,
         width: '100%',
-        maxWidth: 'sm',
+        maxWidth: '503px',
         mx: 'auto',
         left: 0,
         right: 0,
@@ -46,7 +48,7 @@ function Footer() {
         </Box>
       </Link>
 
-      <Link to="/">
+      {/* <Link to="/">
         <Box
           sx={{
             display: 'flex',
@@ -54,11 +56,41 @@ function Footer() {
             alignItems: 'center',
           }}
         >
-          <IconButton area-label="add" color="primary" size="large">
+          <IconButton area-label="add" color="primary" size="large" onClick={handleAddClick}>
             <AddCircleOutlineIcon fontSize="large" />
           </IconButton>
         </Box>
-      </Link>
+      </Link> */}
+
+      {location.pathname === '/' ? (
+        <Link to="/add-expanse" style={{ textDecoration: 'none' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <IconButton area-label="add" color="primary" size="large">
+              <AddCircleOutlineIcon fontSize="large" />
+            </IconButton>
+          </Box>
+        </Link>
+      ) : (
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <IconButton area-label="add" color="primary" size="large">
+              <AddCircleOutlineIcon fontSize="large" />
+            </IconButton>
+          </Box>
+        </Link>
+      )}
 
       <Box
         sx={{

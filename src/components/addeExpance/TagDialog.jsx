@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -8,64 +8,80 @@ import {
   Typography,
   Slide,
 } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import Transition from '../common/Transition';
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
-function TagDialog({ open, handleClose }) {
-  // Array of tags for the demonstration
+function TagDialog({ open, handleClose, handleSelectTag }) {
   const tags = [
     { icon: '🏠', label: 'rent' },
     { icon: '💊', label: 'health' },
     { icon: '🍕', label: 'food' },
-    // Add more tags as needed
+    { icon: '👚', label: 'clothes' },
+    { icon: '🎁', label: 'gift' },
+    { icon: '📚', label: 'education' },
+    { icon: '✈️', label: 'vacation' },
+    { icon: '🛒', label: 'groceries' }
   ];
+
+  const selectTag = (tag) => {
+    handleSelectTag(tag);
+  };
 
   return (
     <Dialog
       open={open}
       onClose={handleClose}
       TransitionComponent={Transition}
-      sx={{
-        '& .MuiDialog-container': {
-          alignItems: 'flex-end',
-        },
+      PaperProps={{
+        sx: {
+          bgcolor: 'black',
+          boxShadow: '0px 6px 20px rgba(0, 0, 0, 0.5)',
+          borderRadius: '20px 20px 0 0',
+          maxHeight: '50vh',
+          position: 'absolute',
+          bottom: '55px',
+          width: '100%',
+          maxWidth: '500px'
+        }
       }}
     >
-      <DialogTitle sx={{ textAlign: 'center', m: 0 }}>
+      <DialogTitle sx={{ textAlign: 'center', m: 0, color: 'rgba(255, 255, 255, 0.7)', py: 1 }}>
         EXPENSES
+
         <IconButton
           aria-label="close"
           onClick={handleClose}
-          sx={{ position: 'absolute', right: 8, top: 8 }}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: 'text.secondary',
+          }}
         >
-          <CloseIcon />
+          {/* <CloseIcon /> */}
         </IconButton>
       </DialogTitle>
-      <Box sx={{ p: 3 }}>
-        <Grid container spacing={2}>
+      <Box sx={{ overflowY: 'auto' }}>
+        <Grid container spacing={2} justifyContent="center" sx={{ p: 2 }}>
           {tags.map((tag, index) => (
-            <Grid item xs={3} key={index} sx={{ textAlign: 'center' }}>
-              <Box
+            <Grid item xs={4} sm={3} key={index} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <IconButton
                 sx={{
                   borderRadius: '50%',
-                  p: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  color: 'text.primary',
                   '&:hover': {
-                    transform: 'scale(1.25)',
+                    bgcolor: 'action.hover',
                   },
-                  transition: 'transform 0.3s ease-in-out',
                 }}
-                onClick={() => {
-                  // Handle tag selection
-                  handleClose();
-                }}
+                onClick={() => selectTag({ icon: tag.icon, label: tag.label })}
               >
-                <Typography variant="h5">{tag.icon}</Typography>
-                <Typography variant="subtitle2">{tag.label}</Typography>
-              </Box>
+                <span role="img" aria-label={tag.label}>{tag.icon}</span>
+              </IconButton>
+              <Typography variant="subtitle2" sx={{ mt: 1, color: 'text.primary' }}>
+                {tag.label}
+              </Typography>
             </Grid>
           ))}
         </Grid>
