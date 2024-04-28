@@ -1,6 +1,9 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header, Footer, Analytic, ExpenseSummary } from './components';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Container, CssBaseline } from '@mui/material';
+import { Layout, appRoutes } from './Routes';
+
 function App() {
   const darkTheme = createTheme({
     palette: {
@@ -17,13 +20,22 @@ function App() {
   return (
     <Container maxWidth="sm" component="main">
       <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <Header />
-
-        <ExpenseSummary />
-        {/* <Analytic /> */}
-
-        <Footer />
+        <Container maxWidth="sm" component="main">
+          <CssBaseline />
+          <Router>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                {appRoutes.map((route) => (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={route.element}
+                  />
+                ))}
+              </Route>
+            </Routes>
+          </Router>
+        </Container>
       </ThemeProvider>
     </Container>
   );
