@@ -24,7 +24,7 @@ export default function AddExpanse() {
   };
 
   const handleNext = () => {
-    if (amount <= 0 || isNaN(amount)) {
+    if (amount <= 0) {
       setErrorMessage('Amount should be bigger than 0');
     } else if (!selectedTag) {
       setErrorMessage('Please select a tag!');
@@ -63,6 +63,7 @@ export default function AddExpanse() {
             Today at Sun Apr 28 2024
           </Typography>
           <Input
+            placeholder='0'
             value={amount}
             onChange={(e) => setAmount(parseFloat(e.target.value))}
             sx={{

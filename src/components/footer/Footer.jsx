@@ -3,6 +3,7 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { Link, useLocation } from 'react-router-dom';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 
 function Footer() {
   const location = useLocation();
@@ -100,9 +101,9 @@ function Footer() {
         }}
       >
         <IconButton area-label="change log">
-          <CampaignIcon />
+          <DownloadForOfflineIcon />
         </IconButton>
-        <Typography variant="caption">Change Log</Typography>
+        <Typography variant="caption">Download</Typography>
       </Box>
     </Box>
   );
