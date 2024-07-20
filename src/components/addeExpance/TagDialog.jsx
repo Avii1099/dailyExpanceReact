@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -8,11 +8,24 @@ import {
   Typography,
   Slide,
 } from '@mui/material';
+import { fetchExpanseEmoji } from '../../api';
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 function TagDialog({ open, handleClose, handleSelectTag }) {
+  const fetchAPI = useCallback(async () => {
+    try {
+      await fetchExpanseEmoji();
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchAPI();
+  }, []);
+
   const tags = [
     { icon: '🏠', label: 'rent' },
     { icon: '💊', label: 'health' },
@@ -21,7 +34,7 @@ function TagDialog({ open, handleClose, handleSelectTag }) {
     { icon: '🎁', label: 'gift' },
     { icon: '📚', label: 'education' },
     { icon: '✈️', label: 'vacation' },
-    { icon: '🛒', label: 'groceries' }
+    { icon: '🛒', label: 'groceries' },
   ];
 
   const selectTag = (tag) => {
@@ -42,13 +55,19 @@ function TagDialog({ open, handleClose, handleSelectTag }) {
           position: 'absolute',
           bottom: '55px',
           width: '100%',
-          maxWidth: '500px'
-        }
+          maxWidth: '500px',
+        },
       }}
     >
-      <DialogTitle sx={{ textAlign: 'center', m: 0, color: 'rgba(255, 255, 255, 0.7)', py: 1 }}>
+      <DialogTitle
+        sx={{
+          textAlign: 'center',
+          m: 0,
+          color: 'rgba(255, 255, 255, 0.7)',
+          py: 1,
+        }}
+      >
         EXPENSES
-
         <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -65,7 +84,17 @@ function TagDialog({ open, handleClose, handleSelectTag }) {
       <Box sx={{ overflowY: 'auto' }}>
         <Grid container spacing={2} justifyContent="center" sx={{ p: 2 }}>
           {tags.map((tag, index) => (
-            <Grid item xs={4} sm={3} key={index} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Grid
+              item
+              xs={4}
+              sm={3}
+              key={index}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
               <IconButton
                 sx={{
                   borderRadius: '50%',
@@ -77,9 +106,14 @@ function TagDialog({ open, handleClose, handleSelectTag }) {
                 }}
                 onClick={() => selectTag({ icon: tag.icon, label: tag.label })}
               >
-                <span role="img" aria-label={tag.label}>{tag.icon}</span>
+                <span role="img" aria-label={tag.label}>
+                  {tag.icon}
+                </span>
               </IconButton>
-              <Typography variant="subtitle2" sx={{ mt: 1, color: 'text.primary' }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ mt: 1, color: 'text.primary' }}
+              >
                 {tag.label}
               </Typography>
             </Grid>
